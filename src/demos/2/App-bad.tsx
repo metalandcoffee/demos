@@ -1,25 +1,33 @@
-import { useState } from 'react'
 import logo from '/coffee-cup.png'
 import './App.css'
 
-function App() {
-  // ✅ Solution. Use state management.
-  const [count, setCount] = useState(0);
+function UserCard({ name }: {name: string}) {
+  // ❌ Problem.
+  name = "Different name"; // Don't change props.
+  return <h1>{name}</h1>;
+}
 
-  const [animateClass, setAnimateClass] = useState('');
+
+
+function App() {
+  // ❌ Problem.
+  let count = 0;
+
+  let animateClass = '';
 
   // Click handler.
   const handleClick = () => {
-    setCount(count => count + 1);
+    count = count + 1;
 
-    setAnimateClass('bounce');
-    setTimeout(() => {
-      setAnimateClass('');
+    animateClass = 'bounce';
+        setTimeout(() => {
+        animateClass ='';
     }, 300);
   }
 
   return (
     <>
+      <UserCard name="ebonie" />
       <div className="card">
         <img
           src={logo}
